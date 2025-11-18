@@ -16,4 +16,7 @@ public class ConductorVistasControlador {
         return new VistaConductorListar(esce, anchito, altito);
     }
 
+    public static StackPane administrarConductor(Stage esce, double anchito, double altito) {
+        return new org.unimag.vista.conductor.VistaConductorAdministrar(esce, anchito, altito);
+    }
 }

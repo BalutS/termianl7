@@ -1,6 +1,8 @@
-package org.unimag.vista.asiento;
+package org.unimag.vista.equipaje;
 
+import java.text.DecimalFormat;
 import java.util.List;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
@@ -22,28 +24,27 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import org.unimag.controlador.asiento.AsientoControladorListar;
-import org.unimag.dto.AsientoDto;
-import org.unimag.dto.BusDto;
+import org.unimag.controlador.equipaje.EquipajeControladorListar;
+import org.unimag.dto.EquipajeDto;
+import org.unimag.dto.PasajeroDto;
 import org.unimag.recurso.constante.Configuracion;
 import org.unimag.recurso.utilidad.Marco;
 
-public class VistaAsientoAdministrar extends StackPane {
+public class VistaEquipajeAdministrar extends StackPane {
 
     private final Rectangle marco;
     private final Stage miEscenario;
     private final VBox cajaVertical;
-    private final TableView<AsientoDto> miTabla;
+    private final TableView<EquipajeDto> miTabla;
     private final Button btnEliminar;
     private final Button btnActualizar;
     private final Button btnCancelar;
 
     private static final String ESTILO_CENTRAR = "-fx-alignment: CENTER;";
+    private static final String ESTILO_DERECHA = "-fx-alignment: CENTER-RIGHT;";
     private static final String ESTILO_IZQUIERDA = "-fx-alignment: CENTER-LEFT;";
-    private static final String ESTILO_ROJO_CENTRADO = "-fx-text-fill: red;" + ESTILO_CENTRAR;
-    private static final String ESTILO_VERDE_CENTRADO = "-fx-text-fill: green;" + ESTILO_CENTRAR;
 
-    public VistaAsientoAdministrar(Stage ventanaPadre, double ancho, double alto) {
+    public VistaEquipajeAdministrar(Stage ventanaPadre, double ancho, double alto) {
         setAlignment(Pos.CENTER);
         miEscenario = ventanaPadre;
         marco = Marco.crear(miEscenario,
@@ -78,63 +79,64 @@ public class VistaAsientoAdministrar extends StackPane {
         bloqueSeparador.prefHeightProperty().bind(
                 miEscenario.heightProperty().multiply(0.05));
 
-        int cant = AsientoControladorListar.obtenerCantidadAsientos();
-        Text titulo = new Text("ADMINISTRAR ASIENTOS (" + cant + ")");
+        int cant = EquipajeControladorListar.obtenerCantidadEquipaje();
+        Text titulo = new Text("ADMINISTRAR EQUIPAJES (" + cant + ")");
         titulo.setFill(Color.web(Configuracion.MORADO_OSCURO));
         titulo.setFont(Font.font("Rockwell", FontWeight.BOLD, 28));
 
         cajaVertical.getChildren().addAll(bloqueSeparador, titulo);
     }
 
-    private TableColumn<AsientoDto, Integer> crearColumnaId() {
-        TableColumn<AsientoDto, Integer> columna = new TableColumn<>("ID Asiento");
-        columna.setCellValueFactory(new PropertyValueFactory<>("idAsiento"));
-        columna.prefWidthProperty().bind(miTabla.widthProperty().multiply(0.2));
+    private TableColumn<EquipajeDto, Integer> crearColumnaId() {
+        TableColumn<EquipajeDto, Integer> columna = new TableColumn<>("ID");
+        columna.setCellValueFactory(new PropertyValueFactory<>("idEquipaje"));
+        columna.prefWidthProperty().bind(miTabla.widthProperty().multiply(0.1));
         columna.setStyle(ESTILO_CENTRAR);
         return columna;
     }
 
-    private TableColumn<AsientoDto, Integer> crearColumnaBus() {
-        TableColumn<AsientoDto, Integer> columna = new TableColumn<>("ID Bus");
-        columna.setCellValueFactory(cellData -> {
-            BusDto bus = cellData.getValue().getBusAsiento();
-            if (bus != null) {
-                return new javafx.beans.property.SimpleIntegerProperty(bus.getIdBus()).asObject();
-            } else {
-                return null;
-            }
-        });
-        columna.prefWidthProperty().bind(miTabla.widthProperty().multiply(0.2));
-        columna.setStyle(ESTILO_CENTRAR);
-        return columna;
-    }
+    private TableColumn<EquipajeDto, Double> crearColumnaPeso() {
+        TableColumn<EquipajeDto, Double> columna = new TableColumn<>("Peso");
+        columna.setCellValueFactory(new PropertyValueFactory<>("pesoEquipaje"));
 
-    private TableColumn<AsientoDto, Boolean> crearColumnaEstado() {
-        TableColumn<AsientoDto, Boolean> columna = new TableColumn<>("Estado");
-        columna.setCellValueFactory(new PropertyValueFactory<>("estadoAsiento"));
+        columna.setCellFactory(col -> new TableCell<EquipajeDto, Double>() {
+            private final DecimalFormat formato = new DecimalFormat("#.#############");
 
-        columna.setCellFactory(col -> new TableCell<AsientoDto, Boolean>() {
             @Override
-            protected void updateItem(Boolean valor, boolean empty) {
-                super.updateItem(valor, empty);
-                if (empty || valor == null) {
+            protected void updateItem(Double peso, boolean empty) {
+                super.updateItem(peso, empty);
+                if (empty || peso == null) {
                     setText(null);
-                    setStyle("");
                 } else {
-                    setText(valor ? "Ocupado" : "Desocupado");
-                    setStyle(valor ? ESTILO_VERDE_CENTRADO : ESTILO_ROJO_CENTRADO);
+                    setText(formato.format(peso));
                 }
             }
         });
 
-        columna.prefWidthProperty().bind(miTabla.widthProperty().multiply(0.3));
-        columna.setStyle(ESTILO_CENTRAR);
+        columna.prefWidthProperty().bind(miTabla.widthProperty().multiply(0.2));
+        columna.setStyle(ESTILO_DERECHA);
+
         return columna;
     }
 
-    private TableColumn<AsientoDto, String> crearColumnaImagen() {
-        TableColumn<AsientoDto, String> columna = new TableColumn<>("Imagen");
-        columna.setCellValueFactory(new PropertyValueFactory<>("nombreImagenPublicoAsiento"));
+    private TableColumn<EquipajeDto, String> crearColumnaDuenio() {
+        TableColumn<EquipajeDto, String> columna = new TableColumn<>("Dueño");
+        columna.setCellValueFactory(cellData -> {
+            PasajeroDto duenio = cellData.getValue().getDuenioEquipaje();
+            if (duenio != null) {
+                return new SimpleStringProperty(duenio.getNombrePasajero());
+            } else {
+                return new SimpleStringProperty("-");
+            }
+        });
+        columna.prefWidthProperty().bind(miTabla.widthProperty().multiply(0.4));
+        columna.setStyle(ESTILO_IZQUIERDA);
+        return columna;
+    }
+
+    private TableColumn<EquipajeDto, String> crearColumnaImagen() {
+        TableColumn<EquipajeDto, String> columna = new TableColumn<>("Imagen");
+        columna.setCellValueFactory(new PropertyValueFactory<>("nombreImagenPublicoEquipaje"));
         columna.setCellFactory(param -> new TableCell<>() {
             private final ImageView imageView = new ImageView();
 
@@ -163,8 +165,8 @@ public class VistaAsientoAdministrar extends StackPane {
         miTabla.getColumns().addAll(
                 List.of(
                         crearColumnaId(),
-                        crearColumnaBus(),
-                        crearColumnaEstado(),
+                        crearColumnaPeso(),
+                        crearColumnaDuenio(),
                         crearColumnaImagen()
                 ));
     }
@@ -172,11 +174,11 @@ public class VistaAsientoAdministrar extends StackPane {
     private void crearTabla() {
         configurarColumnas();
 
-        List<AsientoDto> arrAsiento = AsientoControladorListar.obtenerAsientos();
-        ObservableList<AsientoDto> datosTabla = FXCollections.observableArrayList(arrAsiento);
+        List<EquipajeDto> arrEquipaje = EquipajeControladorListar.obtenerEquipaje();
+        ObservableList<EquipajeDto> datosTabla = FXCollections.observableArrayList(arrEquipaje);
 
         miTabla.setItems(datosTabla);
-        miTabla.setPlaceholder(new Text("No hay asientos registrados"));
+        miTabla.setPlaceholder(new Text("No hay equipajes registrados"));
 
         miTabla.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_ALL_COLUMNS);
 
@@ -191,7 +193,7 @@ public class VistaAsientoAdministrar extends StackPane {
         cajaVertical.getChildren().add(miTabla);
         getChildren().add(cajaVertical);
     }
-    
+
     private void crearBotones() {
         HBox cajaBotones = new HBox(20);
         cajaBotones.setAlignment(Pos.CENTER);

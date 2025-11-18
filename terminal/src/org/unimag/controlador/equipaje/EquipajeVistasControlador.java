@@ -16,4 +16,7 @@ public class EquipajeVistasControlador {
         return new VistaEquipajeListar(esce, anchito, altito);
     }
 
+    public static StackPane administrarEquipaje(Stage esce, double anchito, double altito) {
+        return new org.unimag.vista.equipaje.VistaEquipajeAdministrar(esce, anchito, altito);
+    }
 }
