@@ -30,6 +30,7 @@ import org.unimag.dto.RutaDto;
 import org.unimag.dto.TiqueteDto;
 import org.unimag.dto.ViajeDto;
 import org.unimag.recurso.constante.Configuracion;
+import org.unimag.recurso.utilidad.Icono;
 import org.unimag.recurso.utilidad.Marco;
 
 public class VistaTiqueteAdministrar extends StackPane {
@@ -59,9 +60,17 @@ public class VistaTiqueteAdministrar extends StackPane {
 
         miTabla = new TableView<>();
         cajaVertical = new VBox(20);
-        btnEliminar = new Button("Eliminar");
-        btnActualizar = new Button("Actualizar");
-        btnCancelar = new Button("Cancelar");
+        btnEliminar = new Button();
+        btnActualizar = new Button();
+        btnCancelar = new Button();
+
+        btnActualizar.setGraphic(Icono.obtenerIcono("iconoEditar.png", 20));
+        btnEliminar.setGraphic(Icono.obtenerIcono("iconoBorrar.png", 20));
+        btnCancelar.setGraphic(Icono.obtenerIcono("iconoCancelar.png", 20));
+
+        btnActualizar.setStyle("-fx-background-color: #28a745;");
+        btnEliminar.setStyle("-fx-background-color: #dc3545;");
+        btnCancelar.setStyle("-fx-background-color: #ffc107;");
 
         getChildren().add(marco);
 
