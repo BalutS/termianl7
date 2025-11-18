@@ -16,4 +16,7 @@ public class BusVistasControlador {
         return new VistaBusListar(esce, anchito, altito);
     }
   
+    public static StackPane administrarBus(Stage esce, double anchito, double altito) {
+        return new org.unimag.vista.bus.VistaBusAdministrar(esce, anchito, altito);
+    }
 }

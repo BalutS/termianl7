@@ -16,4 +16,7 @@ public class PasajeroVistasControlador {
         return new VistaPasajeroListar(esce, anchito, altito);
     }
 
+    public static StackPane administrarPasajero(Stage esce, double anchito, double altito) {
+        return new org.unimag.vista.pasajero.VistaPasajeroAdministrar(esce, anchito, altito);
+    }
 }

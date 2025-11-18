@@ -16,4 +16,7 @@ public class TiqueteVistasControlador {
         return new VistaTiqueteListar(esce, anchito, altito);
     }
 
+    public static StackPane administrarTiquete(Stage esce, double anchito, double altito) {
+        return new org.unimag.vista.tiquete.VistaTiqueteAdministrar(esce, anchito, altito);
+    }
 }

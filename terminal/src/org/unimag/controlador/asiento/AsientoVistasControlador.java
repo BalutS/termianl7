@@ -16,4 +16,7 @@ public class AsientoVistasControlador {
         return new VistaAsientoListar(esce, anchito, altito);
     }
 
+    public static StackPane administrarAsiento(Stage esce, double anchito, double altito) {
+        return new org.unimag.vista.asiento.VistaAsientoAdministrar(esce, anchito, altito);
+    }
 }

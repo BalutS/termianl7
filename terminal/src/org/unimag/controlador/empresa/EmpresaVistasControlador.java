@@ -16,4 +16,7 @@ public class EmpresaVistasControlador {
         return new VistaEmpresaListar(esce, anchito, altito);
     }
 
+    public static StackPane administrarEmpresa(Stage esce, double anchito, double altito) {
+        return new org.unimag.vista.empresa.VistaEmpresaAdministrar(esce, anchito, altito);
+    }
 }

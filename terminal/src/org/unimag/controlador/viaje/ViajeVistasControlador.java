@@ -16,4 +16,7 @@ public class ViajeVistasControlador {
         return new VistaViajeListar(esce, anchito, altito);
     }
 
+    public static StackPane administrarViaje(Stage esce, double anchito, double altito) {
+        return new org.unimag.vista.viaje.VistaViajeAdministrar(esce, anchito, altito);
+    }
 }

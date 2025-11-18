@@ -16,4 +16,7 @@ public class RutaVistasControlador {
         return new VistaRutaListar(esce, anchito, altito);
     }
 
+    public static StackPane administrarRuta(Stage esce, double anchito, double altito) {
+        return new org.unimag.vista.ruta.VistaRutaAdministrar(esce, anchito, altito);
+    }
 }
