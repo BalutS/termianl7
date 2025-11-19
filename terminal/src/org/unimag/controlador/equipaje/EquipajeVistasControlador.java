@@ -3,6 +3,7 @@ package org.unimag.controlador.equipaje;
 
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import org.unimag.vista.equipaje.VistaEquipajeAdministrar;
 import org.unimag.vista.equipaje.VistaEquipajeCrear;
 import org.unimag.vista.equipaje.VistaEquipajeListar;
 
@@ -17,6 +18,6 @@ public class EquipajeVistasControlador {
     }
 
     public static StackPane administrarEquipaje(Stage esce, double anchito, double altito) {
-        return new org.unimag.vista.equipaje.VistaEquipajeAdministrar(esce, anchito, altito);
+        return new VistaEquipajeAdministrar(esce, anchito, altito);
     }
 }

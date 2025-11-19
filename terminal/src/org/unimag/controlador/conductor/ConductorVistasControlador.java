@@ -3,6 +3,7 @@ package org.unimag.controlador.conductor;
 
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import org.unimag.vista.conductor.VistaConductorAdministrar;
 import org.unimag.vista.conductor.VistaConductorCrear;
 import org.unimag.vista.conductor.VistaConductorListar;
 
@@ -17,6 +18,6 @@ public class ConductorVistasControlador {
     }
 
     public static StackPane administrarConductor(Stage esce, double anchito, double altito) {
-        return new org.unimag.vista.conductor.VistaConductorAdministrar(esce, anchito, altito);
+        return new VistaConductorAdministrar(esce, anchito, altito);
     }
 }

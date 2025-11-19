@@ -3,6 +3,7 @@ package org.unimag.controlador.bus;
 
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import org.unimag.vista.bus.VistaBusAdministrar;
 import org.unimag.vista.bus.VistaBusCrear;
 import org.unimag.vista.bus.VistaBusListar;
 
@@ -17,6 +18,6 @@ public class BusVistasControlador {
     }
   
     public static StackPane administrarBus(Stage esce, double anchito, double altito) {
-        return new org.unimag.vista.bus.VistaBusAdministrar(esce, anchito, altito);
+        return new VistaBusAdministrar(esce, anchito, altito);
     }
 }

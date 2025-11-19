@@ -3,6 +3,7 @@ package org.unimag.controlador.empresa;
 
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import org.unimag.vista.empresa.VistaEmpresaAdministrar;
 import org.unimag.vista.empresa.VistaEmpresaCrear;
 import org.unimag.vista.empresa.VistaEmpresaListar;
 
@@ -17,6 +18,6 @@ public class EmpresaVistasControlador {
     }
 
     public static StackPane administrarEmpresa(Stage esce, double anchito, double altito) {
-        return new org.unimag.vista.empresa.VistaEmpresaAdministrar(esce, anchito, altito);
+        return new VistaEmpresaAdministrar(esce, anchito, altito);
     }
 }
