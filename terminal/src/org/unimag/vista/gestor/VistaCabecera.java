@@ -108,7 +108,10 @@ public class VistaCabecera extends SubScene {
         });
 
         opcion3.setOnAction((e) -> {
-            System.out.println("Abrir formulario Administrar Buses");
+            miPanelPrincipal.setCenter(
+                    AsientoVistasControlador.administrarAsiento(miEscenario,
+                            Configuracion.ANCHO_APP, Configuracion.ALTO_CABECERA)
+            );
         });
 
         opcion4.setOnAction((e) -> {
@@ -142,7 +145,10 @@ public class VistaCabecera extends SubScene {
         });
 
         opcion3.setOnAction((e) -> {
-            System.out.println("Abrir formulario Administrar Buses");
+            miPanelPrincipal.setCenter(
+                    BusVistasControlador.administrarBus(miEscenario,
+                            Configuracion.ANCHO_APP, Configuracion.ALTO_CABECERA)
+            );
         });
 
         opcion4.setOnAction((e) -> {
@@ -176,7 +182,10 @@ public class VistaCabecera extends SubScene {
         });
 
         opcion3.setOnAction((e) -> {
-            System.out.println("Abrir formulario Administrar Buses");
+            miPanelPrincipal.setCenter(
+                    ConductorVistasControlador.administrarConductor(miEscenario,
+                            Configuracion.ANCHO_APP, Configuracion.ALTO_CABECERA)
+            );
         });
 
         opcion4.setOnAction((e) -> {
@@ -210,7 +219,10 @@ public class VistaCabecera extends SubScene {
         });
 
         opcion3.setOnAction((e) -> {
-            System.out.println("Abrir formulario Administrar empresa");
+            miPanelPrincipal.setCenter(
+                    EmpresaVistasControlador.administrarEmpresa(miEscenario,
+                            Configuracion.ANCHO_APP, Configuracion.ALTO_CABECERA)
+            );
         });
 
         opcion4.setOnAction((e) -> {
@@ -245,7 +257,10 @@ public class VistaCabecera extends SubScene {
         });
 
         opcion3.setOnAction((e) -> {
-            System.out.println("Abrir formulario Administrar empresa");
+            miPanelPrincipal.setCenter(
+                    EquipajeVistasControlador.administrarEquipaje(miEscenario,
+                            Configuracion.ANCHO_APP, Configuracion.ALTO_CABECERA)
+            );
         });
 
         opcion4.setOnAction((e) -> {
@@ -280,7 +295,10 @@ public class VistaCabecera extends SubScene {
         });
 
         opcion3.setOnAction((e) -> {
-            System.out.println("Abrir formulario Administrar Buses");
+            miPanelPrincipal.setCenter(
+                    PasajeroVistasControlador.administrarPasajero(miEscenario,
+                            Configuracion.ANCHO_APP, Configuracion.ALTO_CABECERA)
+            );
         });
 
         opcion4.setOnAction((e) -> {
@@ -314,7 +332,10 @@ public class VistaCabecera extends SubScene {
         });
 
         opcion3.setOnAction((e) -> {
-            System.out.println("Abrir formulario Administrar Buses");
+            miPanelPrincipal.setCenter(
+                    RutaVistasControlador.administrarRuta(miEscenario,
+                            Configuracion.ANCHO_APP, Configuracion.ALTO_CABECERA)
+            );
         });
 
         opcion4.setOnAction((e) -> {
@@ -348,7 +369,10 @@ public class VistaCabecera extends SubScene {
         });
 
         opcion3.setOnAction((e) -> {
-            System.out.println("Abrir formulario Administrar Buses");
+            miPanelPrincipal.setCenter(
+                    TiqueteVistasControlador.administrarTiquete(miEscenario,
+                            Configuracion.ANCHO_APP, Configuracion.ALTO_CABECERA)
+            );
         });
 
         opcion4.setOnAction((e) -> {

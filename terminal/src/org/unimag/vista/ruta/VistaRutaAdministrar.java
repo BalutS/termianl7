@@ -1,3 +1,4 @@
+
 package org.unimag.vista.ruta;
 
 import java.text.DecimalFormat;
@@ -5,15 +6,15 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
+import javafx.scene.control.Button;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -34,9 +35,6 @@ public class VistaRutaAdministrar extends StackPane {
     private final Stage miEscenario;
     private final VBox cajaVertical;
     private final TableView<RutaDto> miTabla;
-    private final Button btnEliminar;
-    private final Button btnActualizar;
-    private final Button btnCancelar;
 
     private static final String ESTILO_CENTRAR = "-fx-alignment: CENTER;";
     private static final String ESTILO_DERECHA = "-fx-alignment: CENTER-RIGHT;";
@@ -54,16 +52,12 @@ public class VistaRutaAdministrar extends StackPane {
 
         miTabla = new TableView<>();
         cajaVertical = new VBox(20);
-        btnEliminar = new Button("Eliminar");
-        btnActualizar = new Button("Actualizar");
-        btnCancelar = new Button("Cancelar");
-
         getChildren().add(marco);
 
         configurarCajaVertical();
         crearTitulo();
         crearTabla();
-        crearBotones();
+
     }
 
     private void configurarCajaVertical() {
@@ -146,8 +140,10 @@ public class VistaRutaAdministrar extends StackPane {
                     setGraphic(null);
                 } else {
                     try {
-                        Image image = new Image("file:lasFotos/" + item, 50, 50, true, true);
+                        Image image = new Image(getClass().getResourceAsStream("/lasFotos/" + item));
                         imageView.setImage(image);
+                        imageView.setFitWidth(100);
+                        imageView.setFitHeight(100);
                         setGraphic(imageView);
                     } catch (Exception e) {
                         setGraphic(null);
@@ -191,13 +187,16 @@ public class VistaRutaAdministrar extends StackPane {
         VBox.setVgrow(miTabla, Priority.ALWAYS);
 
         cajaVertical.getChildren().add(miTabla);
-        getChildren().add(cajaVertical);
-    }
-    
-    private void crearBotones() {
-        HBox cajaBotones = new HBox(20);
+
+        Button btnEliminar = new Button("Eliminar");
+        Button btnActualizar = new Button("Actualizar");
+        Button btnCancelar = new Button("Cancelar");
+
+        HBox cajaBotones = new HBox(10, btnEliminar, btnActualizar, btnCancelar);
         cajaBotones.setAlignment(Pos.CENTER);
-        cajaBotones.getChildren().addAll(btnActualizar, btnEliminar, btnCancelar);
+
         cajaVertical.getChildren().add(cajaBotones);
+
+        getChildren().add(cajaVertical);
     }
 }

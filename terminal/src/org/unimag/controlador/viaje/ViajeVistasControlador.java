@@ -3,6 +3,7 @@ package org.unimag.controlador.viaje;
 
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import org.unimag.vista.viaje.VistaViajeAdministrar;
 import org.unimag.vista.viaje.VistaViajeCrear;
 import org.unimag.vista.viaje.VistaViajeListar;
 
@@ -17,6 +18,6 @@ public class ViajeVistasControlador {
     }
 
     public static StackPane administrarViaje(Stage esce, double anchito, double altito) {
-        return new org.unimag.vista.viaje.VistaViajeAdministrar(esce, anchito, altito);
+        return new VistaViajeAdministrar(esce, anchito, altito);
     }
 }
